@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c1ff0oycbahgr"]
+
+[ext_resource type="Script" uid="uid://jp36mrgaa2ky" path="res://scripts/main.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/actors/player.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://ccvhdnwbsoh5j" path="res://scenes/rooms/room_04.tscn" id="2_choun"]
+[ext_resource type="PackedScene" path="res://scenes/ui/game_ui.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://s2vpv6lef66w" path="res://scenes/rooms/room_01.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/rooms/room_02.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://cydcftey0doxn" path="res://scenes/rooms/room_03.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/ui/debug_settings.tscn" id="7"]
+[ext_resource type="Script" uid="uid://chfslchmauw5u" path="res://scripts/beat_audio.gd" id="8"]
+[ext_resource type="Script" uid="uid://cduog7fdn3dsq" path="res://scripts/dash_confirm_audio.gd" id="9"]
+
+[node name="ShiftDash" type="Node2D" unique_id=518144464]
+script = ExtResource("1")
+room_scenes = Array[PackedScene]([ExtResource("2_choun"), ExtResource("4"), ExtResource("6"), ExtResource("5")])
+
+[node name="Rooms" type="Node2D" parent="." unique_id=1669970820]
+
+[node name="RoomPreview" parent="Rooms" unique_id=1679546460 instance=ExtResource("4")]
+
+[node name="Player" parent="." unique_id=1097666704 instance=ExtResource("2")]
+position = Vector2(180, 408)
+
+[node name="GameUI" parent="." unique_id=881354740 instance=ExtResource("3")]
+
+[node name="DebugSettings" parent="." unique_id=2134793581 instance=ExtResource("7")]
+
+[node name="BeatAudio" type="AudioStreamPlayer" parent="." unique_id=50818294]
+script = ExtResource("8")
+
+[node name="DashConfirmAudio" type="AudioStreamPlayer" parent="." unique_id=608056640]
+script = ExtResource("9")
