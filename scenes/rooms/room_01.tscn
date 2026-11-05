@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://bn61lxq5th5j4" path="res://scripts/room.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/actors/enemy.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/rooms/exit.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/props/obstacle.tscn" id="4_5wsos"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wsos"]
+size = Vector2(46, 121.75)
 
 [node name="Room" type="Node2D" unique_id=1574926636]
 position = Vector2(73, 298)
@@ -18,18 +22,18 @@ position = Vector2(1085, 50)
 [node name="Enemies" type="Node2D" parent="." unique_id=1770025909]
 
 [node name="Enemy01" parent="Enemies" unique_id=1415127321 instance=ExtResource("2")]
-position = Vector2(610, 197)
+position = Vector2(479, 100)
 kind = 1
 movement_disabled = true
 initial_fire_delay = 0.8
 
 [node name="Enemy02" parent="Enemies" unique_id=1893864035 instance=ExtResource("2")]
-position = Vector2(772, 9)
+position = Vector2(739, 182)
 movement_disabled = true
 initial_fire_delay = 0.92
 
 [node name="Enemy03" parent="Enemies" unique_id=767393476 instance=ExtResource("2")]
-position = Vector2(877, 195)
+position = Vector2(911, 18)
 movement_disabled = true
 initial_fire_delay = 1.04
 
@@ -40,11 +44,56 @@ movement_disabled = true
 initial_fire_delay = 1.16
 
 [node name="Enemy05" parent="Enemies" unique_id=2003999971 instance=ExtResource("2")]
-position = Vector2(354, 182)
+position = Vector2(369, 180)
 movement_disabled = true
 initial_fire_delay = 1.28
 
 [node name="Enemy06" parent="Enemies" unique_id=485689075 instance=ExtResource("2")]
-position = Vector2(489, 11)
+position = Vector2(564, 21)
 movement_disabled = true
 initial_fire_delay = 1.4
+
+[node name="Enemy" parent="Enemies" unique_id=1658429632 instance=ExtResource("2")]
+position = Vector2(665, 102)
+movement_disabled = true
+
+[node name="Obstacle" parent="." unique_id=290046343 instance=ExtResource("4_5wsos")]
+position = Vector2(205, 134)
+
+[node name="CollisionShape2D" parent="Obstacle" index="0"]
+position = Vector2(4, 2.875)
+shape = SubResource("RectangleShape2D_5wsos")
+
+[node name="Obstacle2" parent="." unique_id=1429851941 instance=ExtResource("4_5wsos")]
+position = Vector2(205, 134)
+
+[node name="CollisionShape2D" parent="Obstacle2" index="0"]
+position = Vector2(173, -80)
+shape = SubResource("RectangleShape2D_5wsos")
+
+[node name="Obstacle3" parent="." unique_id=321587791 instance=ExtResource("4_5wsos")]
+position = Vector2(205, 134)
+
+[node name="CollisionShape2D" parent="Obstacle3" index="0"]
+position = Vector2(362, 4)
+shape = SubResource("RectangleShape2D_5wsos")
+
+[node name="Obstacle4" parent="." unique_id=834822838 instance=ExtResource("4_5wsos")]
+position = Vector2(205, 134)
+
+[node name="CollisionShape2D" parent="Obstacle4" index="0"]
+position = Vector2(538, -75)
+shape = SubResource("RectangleShape2D_5wsos")
+
+[node name="Obstacle5" parent="." unique_id=997778279 instance=ExtResource("4_5wsos")]
+position = Vector2(205, 134)
+
+[node name="CollisionShape2D" parent="Obstacle5" index="0"]
+position = Vector2(709, 5)
+shape = SubResource("RectangleShape2D_5wsos")
+
+[editable path="Obstacle"]
+[editable path="Obstacle2"]
+[editable path="Obstacle3"]
+[editable path="Obstacle4"]
+[editable path="Obstacle5"]
