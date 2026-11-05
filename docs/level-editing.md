@@ -22,7 +22,12 @@
 
 ## 布置障碍与危险区域
 
-- 将 `scenes/props/obstacle.tscn` 拖入房间根节点或自行建立的 `Props` 节点下。灰蓝色实心块会阻挡玩家、敌人和子弹；冲刺撞墙后停止。通过 Inspector 的 `Size` 修改尺寸，绘制与碰撞一起更新，建议用 Size 而非节点缩放调整大小。
+- 将 `scenes/props/obstacle.tscn` 拖入房间根节点或 `Props` 下。灰蓝色实心块会阻挡玩家、敌人和子弹，冲刺撞墙后停止。
+- **矩形、圆形、胶囊**：右键障碍物实例，启用 `Editable Children`，展开并选中 `CollisionShape2D`。在 Inspector 的 `Shape` 中编辑尺寸/半径，或选择新的 `RectangleShape2D`、`CircleShape2D`、`CapsuleShape2D`。也可以使用 2D 视图的形状控制点调整尺寸。脚本不会再在启动时覆盖你的形状。
+- **自由多边形**：拖入 `scenes/props/polygon_obstacle.tscn`，右键启用 `Editable Children`，选中 `CollisionPolygon2D`，使用 2D 工具栏的多边形编辑工具移动、增加、删除顶点。默认提供一个 L 形轮廓，可直接修改为斜墙或其他凹多边形；轮廓不要自相交。
+- 外观直接由碰撞形状绘制，无需同步修改 Sprite。可在根节点设置 `Color`，也可给同一障碍物添加多个直接子碰撞节点组合形状。
+- 新实例的基础 Shape 资源按场景本地化；若复制的节点仍共享形状，可在 Shape 资源菜单选择 `Make Unique` 后单独编辑。建议编辑碰撞形状本身，而非非等比缩放节点。
+- 旧代码中的 `obstacle.size = Vector2(...)` 仍兼容，会显式换成对应尺寸的矩形；新关卡请直接编辑碰撞节点。
 - 将 `scenes/props/hazard.tscn` 拖入同样位置。红色尖刺区域不阻挡移动，但玩家接触或高速穿过都会受伤。`Size` 控制范围，`Damage` 控制每次伤害；默认冲刺也会受伤，勾选 `Dash Can Pass Safely` 可以允许冲刺无伤穿越。
 - 危险区域沿用受伤无敌间隔，持续站在里面会在无敌结束后再次受伤，不会每帧扣血；出生保护期间也不会受伤。
 - 障碍物和危险区域不计入清房敌人数，不要放到 `Enemies` 节点下。不要将玩家出生点放在实心障碍内部。
