@@ -1,7 +1,7 @@
 @tool
 extends CharacterBody2D
 signal fired(location: Vector2, velocity: Vector2)
-@export_enum("追踪", "射击") var kind: int = 0:
+@export_enum("Chaser", "Shooter") var kind: int = 0:
 	set(value):
 		kind = value
 		queue_redraw()

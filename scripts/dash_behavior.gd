@@ -7,6 +7,6 @@ static func evaluate(mode: int, error: float, perfect_window: float, good_window
 	var perfect := error <= perfect_window and onbeat
 	if mode in [Mode.RHYTHM_GATED, Mode.CONTACT_SLOWDOWN]:
 		return {"allowed": onbeat, "empowered": perfect, "confirmed": onbeat,
-			"perfect": perfect, "label": "完美" if perfect else ("合拍" if onbeat else ("本拍已使用" if not fresh_beat and error <= good_window else "未合拍"))}
+			"perfect": perfect, "label": "PERFECT" if perfect else ("ON BEAT" if onbeat else ("BEAT USED" if not fresh_beat and error <= good_window else "OFF BEAT"))}
 	return {"allowed": true, "empowered": onbeat, "confirmed": onbeat,
-		"perfect": perfect, "label": "完美" if perfect else ("合拍" if onbeat else "自由冲刺")}
+		"perfect": perfect, "label": "PERFECT" if perfect else ("ON BEAT" if onbeat else "FREE DASH")}

@@ -9,9 +9,9 @@ var perfect_window := 0.10
 var good_window := 0.20
 
 const SECTIONS := [
-	{"name": "铺垫 · 隔拍", "beats": [0.0, 2.0]},
-	{"name": "推进 · 每拍", "beats": [0.0, 1.0, 2.0, 3.0]},
-	{"name": "变奏 · 切分", "beats": [0.0, 1.0, 2.5, 3.5]},
+	{"name": "Intro / Half-time", "beats": [0.0, 2.0]},
+	{"name": "Drive / Every beat", "beats": [0.0, 1.0, 2.0, 3.0]},
+	{"name": "Variation / Syncopated", "beats": [0.0, 1.0, 2.5, 3.5]},
 ]
 
 var time := 0.0

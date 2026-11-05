@@ -35,7 +35,7 @@ func _ready() -> void:
 	player.confirmed.connect(confirm_audio.confirm)
 	apply_tuning(settings.values.duplicate())
 	current_room = $Rooms.get_child(0) if $Rooms.get_child_count() > 0 else null
-	show_overlay("疾速冲刺", "WASD / 方向键移动 · 鼠标瞄准\nShift / 右键冲刺，完美合拍获得爆发加速。\n跟随高音敲击与呼吸环冲刺。\n清空敌人后进入发光出口。\n\n按回车键开始游戏")
+	show_overlay("SHIFT DASH", "WASD / Arrow keys: move. Mouse: aim.\nShift / Right click: dash. Perfect timing grants a burst.\nDash when the shrinking ring meets the inner ring.\nClear all enemies, then enter the glowing exit.\n\nPress ENTER to start")
 	update_ui()
 
 func show_overlay(heading: String, body: String) -> void:
@@ -52,7 +52,7 @@ func start_run() -> void:
 
 func spawn_room() -> void:
 	if room_scenes.is_empty():
-		push_error("请在主场景的 Room Scenes 中配置房间场景。")
+		push_error("Assign at least one room in the main scene Room Scenes array.")
 		return
 	for child in $Rooms.get_children():
 		$Rooms.remove_child(child)
@@ -143,7 +143,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				mode = "paused"
 				beat_audio.stream_paused = true
 				confirm_audio.stream_paused = true
-				show_overlay("已暂停", "按 Esc 继续游戏\n按回车键重新开始")
+				show_overlay("PAUSED", "Press ESC to resume\nPress ENTER to restart")
 			else:
 				mode = "playing"
 				beat_audio.stream_paused = false
@@ -218,13 +218,13 @@ func hurt_player(damage: int = 1, ignore_dash_protection: bool = false) -> void:
 		mode = "lost"
 		beat_audio.stop()
 		confirm_audio.stop()
-		show_overlay("挑战结束", "用时：%.2f 秒\n到达房间：%d / %d\n\n跟随呼吸环练习冲刺，按回车键再试一次。" % [elapsed, room, room_scenes.size()])
+		show_overlay("RUN ENDED", "Time: %.2f s\nRoom reached: %d / %d\nFollow the breathing ring. Press ENTER to try again." % [elapsed, room, room_scenes.size()])
 
 func finish_run() -> void:
 	mode = "won"
 	beat_audio.stop()
 	confirm_audio.stop()
-	show_overlay("全部通关！", "用时：%.2f 秒\n\n当前为操作练习模式，不计分。\n可以在调试设置中调整手感后再试一次。" % elapsed)
+	show_overlay("ALL ROOMS CLEARED", "Time: %.2f s\n\nPractice mode: no scoring.\nTry adjusting the settings for another run." % elapsed)
 
 func burst(location: Vector2, color: Color) -> void:
 	for index in range(12):
@@ -240,13 +240,13 @@ func tick_effects(delta: float) -> void:
 			sparks.remove_at(index)
 
 func update_ui() -> void:
-	ui.feedback_label.text = "冲刺判定：" + (player.rhythm_feedback if player.rhythm_feedback_left > 0 else "—")
+	ui.feedback_label.text = "DASH: " + (player.rhythm_feedback if player.rhythm_feedback_left > 0 else "—")
 	ui.feedback_label.add_theme_color_override("font_color", Color("9baec5"))
 	var count_in := rhythm.countdown()
-	ui.rhythm_label.text = "%s  |  %d BPM  |  %s" % [rhythm.section_name(), int(rhythm.bpm), "准备 %d 拍" % count_in if count_in > 0 else "外环与内环重合时冲刺 · 可跳过拍点自由走位"]
-	ui.title_label.text = "疾速冲刺                                      房间 %02d / %02d" % [room, room_scenes.size()]
-	ui.stats_label.text = "生命 %d / %d     用时 %06.2f 秒     敌人 %02d     操作练习" % [health, run_max_health, elapsed, enemies.size()]
-	ui.footer_label.text = "%s     鼠标瞄准     Shift / 右键冲刺     Esc 暂停     R 重新开始    F1 设置\n%s · %s" % ["普通移动已禁用" if tuning["disable_movement"] else "WASD / 方向键移动", ["自由冲刺（存档）", "节奏限定（无减速存档）", "节奏限定＋碰敌减速"][int(tuning.get("dash_mode", 2))], "冲刺就绪" if player.cooldown <= 0.0 else "冲刺冷却中"]
+	ui.rhythm_label.text = "%s  |  %d BPM  |  %s" % [rhythm.section_name(), int(rhythm.bpm), "Count-in: %d" % count_in if count_in > 0 else "Dash when the rings meet. You can skip beats to reposition."]
+	ui.title_label.text = "SHIFT DASH   |   ROOM %02d / %02d" % [room, room_scenes.size()]
+	ui.stats_label.text = "HP %d / %d     TIME %06.2f s     ENEMIES %02d     PRACTICE" % [health, run_max_health, elapsed, enemies.size()]
+	ui.footer_label.text = "%s    Mouse: aim    Shift / RMB: dash    Esc: pause    R: restart    F1: settings\n%s / %s" % ["Movement disabled" if tuning["disable_movement"] else "WASD / Arrows: move", ["Free dash (archive)", "Rhythm gated (archive)", "Rhythm gated + impact slowdown"][int(tuning.get("dash_mode", 2))], "DASH READY" if player.cooldown <= 0.0 else "DASH RECHARGING"]
 
 func _draw() -> void:
 	for bullet in bullets:

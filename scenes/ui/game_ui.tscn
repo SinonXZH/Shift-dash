@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3]
 [ext_resource type="Script" path="res://scripts/game_ui.gd" id="1"]
 [sub_resource type="SystemFont" id="Font"]
-font_names = PackedStringArray("Microsoft YaHei", "Noto Sans CJK SC", "PingFang SC", "sans-serif")
+font_names = PackedStringArray("Segoe UI", "Microsoft YaHei", "Noto Sans CJK SC", "PingFang SC", "sans-serif")
 [sub_resource type="Theme" id="Theme"]
 default_font = SubResource("Font")
 default_font_size = 20
@@ -23,7 +23,7 @@ offset_right = 1014.0
 offset_bottom = 67.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 30
-text = "疾速冲刺"
+text = "SHIFT DASH"
 
 [node name="Stats" type="Label" parent="HUD"]
 offset_left = 64.0
@@ -32,7 +32,7 @@ offset_right = 1216.0
 offset_bottom = 112.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 20
-text = "生命 3 / 3"
+text = "HP 3 / 3"
 
 [node name="Rhythm" type="Label" parent="HUD"]
 offset_left = 64.0
@@ -41,7 +41,7 @@ offset_right = 1216.0
 offset_bottom = 132.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 15
-text = "节奏提示"
+text = "Rhythm guide"
 
 [node name="Footer" type="Label" parent="HUD"]
 offset_left = 64.0
@@ -50,7 +50,7 @@ offset_right = 1216.0
 offset_bottom = 782.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 18
-text = "操作提示"
+text = "Controls"
 
 [node name="Feedback" type="Label" parent="HUD"]
 offset_left = 950.0
@@ -59,14 +59,14 @@ offset_right = 1216.0
 offset_bottom = 774.0
 mouse_filter = 2
 theme_override_font_sizes/font_size = 17
-text = "冲刺判定：—"
+text = "DASH: --"
 
 [node name="Settings" type="Button" parent="HUD"]
 offset_left = 1040.0
 offset_top = 25.0
 offset_right = 1216.0
 offset_bottom = 65.0
-text = "调试设置 [F1]"
+text = "Settings [F1]"
 [node name="Overlay" type="Panel" parent="HUD"]
 offset_left = 260.0
 offset_top = 218.0
@@ -84,4 +84,4 @@ offset_left = 180.0
 offset_top = 300.0
 offset_right = 580.0
 offset_bottom = 348.0
-text = "开始 / 重新开始［回车键］"
+text = "START / RESTART [ENTER]"

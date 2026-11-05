@@ -4,7 +4,7 @@ extends Node2D
 	set(value):
 		arena_size = value
 		queue_redraw()
-@export_enum("铺垫 · 隔拍", "推进 · 每拍", "变奏 · 切分") var rhythm_section := 0
+@export_enum("Intro / Half-time", "Drive / Every beat", "Variation / Syncopated") var rhythm_section := 0
 @export_range(1, 10, 1) var difficulty := 1
 
 func _ready() -> void:

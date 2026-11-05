@@ -36,7 +36,7 @@ func check_modes() -> void:
 	game.player.cooldown = 0
 	game.rhythm.time = 2.17
 	game.player.try_dash()
-	assert(game.player.dash_left == 0 and game.player.rhythm_feedback == "本拍已使用")
+	assert(game.player.dash_left == 0 and game.player.rhythm_feedback == "BEAT USED")
 	game.open_settings()
 	game.settings.dash_mode.select(0)
 	game.settings.apply_values()
