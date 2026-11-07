@@ -1,0 +1,9 @@
+[gd_scene format=3]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="RhythmHUD" type="Control" parent="."]
+mouse_filter = 2
+
+[node name="AimCursor" type="Control" parent="."]
+mouse_filter = 2
