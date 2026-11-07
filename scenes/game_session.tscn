@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" path="res://scenes/rooms/room_template.tscn" id="1_room"]
 [ext_resource type="PackedScene" path="res://scenes/actors/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" uid="uid://411lbsc32dp2" path="res://scenes/music/music_director.tscn" id="4_music"]
+
 [node name="GameSession" type="Node" unique_id=833038020]
 
 [node name="World" type="Node2D" parent="." unique_id=115079582]
@@ -18,5 +20,7 @@ position = Vector2(160, 400)
 
 [node name="GameCamera" type="Camera2D" parent="World/CameraDirector" unique_id=1964593788]
 position = Vector2(640, 400)
+
+[node name="MusicDirector" parent="." unique_id=1986390649 instance=ExtResource("4_music")]
 
 [node name="HUD" parent="." unique_id=1398165877 instance=ExtResource("3_hud")]
