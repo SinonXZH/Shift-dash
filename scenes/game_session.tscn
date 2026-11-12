@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bj0s761q4cbob" path="res://scenes/actors/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://drxg6cg5mlngx" path="res://scenes/ui/hud.tscn" id="3_hud"]
 [ext_resource type="PackedScene" uid="uid://411lbsc32dp2" path="res://scenes/music/music_director.tscn" id="4_music"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_np1wd"]
 [ext_resource type="Resource" path="res://resource/music/sections/section_a.tres" id="4_wvuqc"]
 [ext_resource type="Script" uid="uid://bqhrx42pbyrki" path="res://script/game_session/world.gd" id="6_world"]
 
@@ -32,6 +33,12 @@ rooms = NodePath("Rooms")
 [node name="Camera2D" type="Camera2D" parent="World/CameraDirector" unique_id=693010251]
 physics_interpolation_mode = 1
 top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="World/CameraDirector/Camera2D" unique_id=159609390]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("4_np1wd")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="MusicDirector" parent="." unique_id=1986390649 instance=ExtResource("4_music")]
 unique_name_in_owner = true

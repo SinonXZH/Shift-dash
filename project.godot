@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 [autoload]
 
 AppData="*res://scenes/app_data.tscn"
+PhantomCameraManager="*uid://duq6jhf6unyis"
+DialogueManager="*uid://c3rodes2l3gxb"
 
 [display]
 
@@ -24,6 +26,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=800
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [input]
 

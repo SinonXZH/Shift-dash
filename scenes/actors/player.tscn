@@ -4,8 +4,14 @@
 [ext_resource type="Script" uid="uid://dtds3bxwm37gm" path="res://script/actors/dash_controller.gd" id="2_dash"]
 [ext_resource type="Texture2D" uid="uid://bluoj5ufmihm1" path="res://resource/art/player/player.svg" id="3_texture"]
 [ext_resource type="Script" uid="uid://due5xx355dkcf" path="res://script/actors/dash_ring.gd" id="4_dash_ring"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_8y416"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_7860b"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 13.0
+
+[sub_resource type="Resource" id="Resource_xx81n"]
+script = ExtResource("6_7860b")
 
 [node name="Player" type="CharacterBody2D" unique_id=257403865 node_paths=PackedStringArray("dash_controller")]
 motion_mode = 1
@@ -24,3 +30,9 @@ script = ExtResource("2_dash")
 
 [node name="DashRing" type="Node2D" parent="." unique_id=1084259244]
 script = ExtResource("4_dash_ring")
+
+[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=241984514]
+script = ExtResource("5_8y416")
+priority = 1
+tween_resource = SubResource("Resource_xx81n")
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
