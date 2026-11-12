@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MusicTransition" format=3 uid="uid://bt6dbdm05uvlb"]
+
+[ext_resource type="Script" uid="uid://csjq46xr6wle" path="res://script/music_director/music_transition.gd" id="1_inceo"]
+[ext_resource type="Resource" path="res://resource/music/sections/section_a.tres" id="2_s2u7k"]
+[ext_resource type="Resource" path="res://resource/music/sections/section_b.tres" id="3_20wbt"]
+
+[resource]
+script = ExtResource("1_inceo")
+source = ExtResource("2_s2u7k")
+target = ExtResource("3_20wbt")
+source_exit_seconds = 0.0
+metadata/_custom_type_script = "uid://csjq46xr6wle"

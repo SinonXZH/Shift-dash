@@ -84,8 +84,12 @@ func set_paused(paused: bool) -> void:
 ## Schedule the target at the next occurrence of the source exit.
 func request_section(target: MusicSection) -> bool:
 	_refresh_playback_state()
-	cancel_transition()
-	if _current_section == null or target == _current_section:
+	if target == null or _current_section == null:
+		return false
+	# Preserve the scheduled notes, including any early dash already triggered.
+	if _pending != null and _pending.section == target:
+		return true
+	if target == _current_section:
 		return false
 
 	var exit_seconds := _current_section.playback_end_seconds()

@@ -34,6 +34,9 @@ func load_selected_level() -> bool:
 
 func reset_player() -> void:
 	completed = false
+	for room in rooms.get_children():
+		if room is GameRoom:
+			room.reset_music_zones()
 	player.reset(_spawn_position)
 
 
@@ -59,6 +62,7 @@ func _load_room() -> bool:
 		room.free()
 		return false
 	_spawn_position = spawn.global_position
+	room.configure_music(player, music_director)
 	exit.body_entered.connect(_on_exit_body_entered)
 	var camera_anchor := room.camera_anchor
 	if camera_anchor != null:

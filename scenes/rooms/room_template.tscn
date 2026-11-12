@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cl7ea2yu4fopc"]
 
+[ext_resource type="PackedScene" path="res://scenes/rooms/music_zone.tscn" id="1_brwyp"]
 [ext_resource type="Script" uid="uid://bxwk06o04hqqw" path="res://script/room/room.gd" id="1_prhwa"]
+[ext_resource type="Resource" path="res://resource/music/sections/section_b.tres" id="3_zone_section"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
 size = Vector2(96, 144)
 
@@ -26,6 +29,10 @@ shape = SubResource("RectangleShape2D_exit")
 [node name="Props" type="Node2D" parent="." unique_id=1283344746]
 
 [node name="MusicZones" type="Node2D" parent="." unique_id=1272599596]
+
+[node name="MusicZone" parent="MusicZones" unique_id=658007942 instance=ExtResource("1_brwyp")]
+position = Vector2(640, 400)
+target_section = ExtResource("3_zone_section")
 
 [node name="CameraAnchor" type="Marker2D" parent="." unique_id=2056955791]
 position = Vector2(640, 400)
