@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cl7ea2yu4fopc"]
 
-[ext_resource type="PackedScene" path="res://scenes/rooms/music_zone.tscn" id="1_brwyp"]
+[ext_resource type="PackedScene" path="res://resource/level/zone/music_zone.tscn" id="1_brwyp"]
 [ext_resource type="Script" uid="uid://bxwk06o04hqqw" path="res://script/room/room.gd" id="1_prhwa"]
 [ext_resource type="Resource" path="res://resource/music/sections/section_b.tres" id="3_zone_section"]
 

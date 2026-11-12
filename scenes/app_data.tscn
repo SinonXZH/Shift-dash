@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" uid="uid://c5tead6bow3xw" path="res://script/game_session/app_data.gd" id="1"]
-[ext_resource type="Resource" uid="uid://bras5k771221b" path="res://resource/level_catalog.tres" id="2"]
+[ext_resource type="Resource" uid="uid://bras5k771221b" path="res://resource/level/level_catalog.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://b6oux7k6umfxp" path="res://scenes/game_session.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/ui/main_menu.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/ui/level_select.tscn" id="5"]
