@@ -1,9 +1,85 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://drxg6cg5mlngx"]
 
-[node name="HUD" type="CanvasLayer"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/ui/settings_panel.tscn" id="2"]
+[ext_resource type="Theme" path="res://scenes/ui/menu_theme.tres" id="3"]
 
-[node name="RhythmHUD" type="Control" parent="."]
+[ext_resource type="Script" path="res://script/ui/game_hud.gd" id="4_hud"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1203745967 node_paths=PackedStringArray("level_complete", "result_title", "next_button", "ending_timer", "return_button", "result_status", "pause_menu", "resume_button", "settings_button", "pause_status", "settings_panel", "save_return_button", "save_quit_button")]
+script = ExtResource("4_hud")
+
+level_complete = NodePath("LevelComplete")
+result_title = NodePath("LevelComplete/Content/Title")
+next_button = NodePath("LevelComplete/Content/NextLevel")
+ending_timer = NodePath("LevelComplete/EndingTimer")
+return_button = NodePath("LevelComplete/Content/ReturnToLevels")
+result_status = NodePath("LevelComplete/Content/Status")
+pause_menu = NodePath("PauseMenu")
+resume_button = NodePath("PauseMenu/Center/Panel/Content/Resume")
+settings_button = NodePath("PauseMenu/Center/Panel/Content/Settings")
+pause_status = NodePath("PauseMenu/Center/Panel/Content/Status")
+settings_panel = NodePath("SettingsPanel")
+save_return_button = NodePath("PauseMenu/Center/Panel/Content/SaveAndReturn")
+save_quit_button = NodePath("PauseMenu/Center/Panel/Content/SaveAndQuit")
+
+[node name="RhythmHUD" type="Control" parent="." unique_id=1160227200]
+layout_mode = 3
+anchors_preset = 0
 mouse_filter = 2
 
-[node name="AimCursor" type="Control" parent="."]
+[node name="AimCursor" type="Control" parent="." unique_id=594109696]
+layout_mode = 3
+anchors_preset = 0
 mouse_filter = 2
+
+[node name="LevelComplete" type="PanelContainer" parent="." unique_id=906893473]
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -90.0
+offset_right = 210.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3")
+
+[node name="Content" type="VBoxContainer" parent="LevelComplete" unique_id=94329385]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="LevelComplete/Content" unique_id=661908230]
+layout_mode = 2
+text = "关卡完成"
+horizontal_alignment = 1
+
+[node name="NextLevel" type="Button" parent="LevelComplete/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "下一关"
+
+[node name="ReturnToLevels" type="Button" parent="LevelComplete/Content"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "返回关卡选择"
+
+[node name="Status" type="Label" parent="LevelComplete/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.67, 0.49, 1)
+horizontal_alignment = 1
+
+[node name="EndingTimer" type="Timer" parent="LevelComplete"]
+wait_time = 2.0
+one_shot = true
+
+[node name="PauseMenu" parent="." unique_id=512463844 instance=ExtResource("1")]
+layout_mode = 3
+
+[node name="SettingsPanel" parent="." unique_id=882707841 instance=ExtResource("2")]
+layout_mode = 3

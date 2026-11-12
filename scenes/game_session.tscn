@@ -1,26 +1,42 @@
 [gd_scene format=3 uid="uid://b6oux7k6umfxp"]
 
-[ext_resource type="PackedScene" path="res://scenes/rooms/room_template.tscn" id="1_room"]
-[ext_resource type="PackedScene" path="res://scenes/actors/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="Script" uid="uid://dft3ukxewiodd" path="res://script/game_session/game_session.gd" id="1_lahpa"]
+[ext_resource type="PackedScene" uid="uid://bj0s761q4cbob" path="res://scenes/actors/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://drxg6cg5mlngx" path="res://scenes/ui/hud.tscn" id="3_hud"]
 [ext_resource type="PackedScene" uid="uid://411lbsc32dp2" path="res://scenes/music/music_director.tscn" id="4_music"]
+[ext_resource type="Resource" path="res://resource/music/sections/section_a.tres" id="4_wvuqc"]
+[ext_resource type="Script" uid="uid://bqhrx42pbyrki" path="res://script/game_session/world.gd" id="6_world"]
 
-[node name="GameSession" type="Node" unique_id=833038020]
+[node name="GameSession" type="Node" unique_id=833038020 node_paths=PackedStringArray("music_director", "world", "hud")]
+process_mode = 3
+script = ExtResource("1_lahpa")
+music_director = NodePath("MusicDirector")
+world = NodePath("World")
+hud = NodePath("HUD")
 
-[node name="World" type="Node2D" parent="." unique_id=115079582]
+[node name="World" type="Node2D" parent="." unique_id=115079582 node_paths=PackedStringArray("game_camera", "music_director", "player", "dash_ring", "rooms")]
+process_mode = 1
+script = ExtResource("6_world")
+game_camera = NodePath("CameraDirector/Camera2D")
+music_director = NodePath("../MusicDirector")
+player = NodePath("Player")
+dash_ring = NodePath("Player/DashRing")
+rooms = NodePath("Rooms")
 
 [node name="Rooms" type="Node2D" parent="World" unique_id=1566190091]
 
-[node name="RoomTemplate" parent="World/Rooms" unique_id=1522498992 instance=ExtResource("1_room")]
-
 [node name="Player" parent="World" unique_id=1841155045 instance=ExtResource("2_player")]
-position = Vector2(160, 400)
 
-[node name="CameraDirector" type="Node2D" parent="World" unique_id=1023151548]
+[node name="CameraDirector" type="Node2D" parent="World" unique_id=279849229]
 
-[node name="GameCamera" type="Camera2D" parent="World/CameraDirector" unique_id=1964593788]
-position = Vector2(640, 400)
+[node name="Camera2D" type="Camera2D" parent="World/CameraDirector" unique_id=693010251]
+physics_interpolation_mode = 1
+top_level = true
 
 [node name="MusicDirector" parent="." unique_id=1986390649 instance=ExtResource("4_music")]
+unique_name_in_owner = true
+process_mode = 1
+initial_section = ExtResource("4_wvuqc")
+transitions_directory = "res://resource/music/transition"
 
 [node name="HUD" parent="." unique_id=1398165877 instance=ExtResource("3_hud")]

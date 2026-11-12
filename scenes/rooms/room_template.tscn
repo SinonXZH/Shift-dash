@@ -1,23 +1,35 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://cl7ea2yu4fopc"]
 
-[ext_resource type="PackedScene" path="res://scenes/rooms/music_zone.tscn" id="1_zone"]
+[ext_resource type="Script" uid="uid://bxwk06o04hqqw" path="res://script/room/room.gd" id="1_prhwa"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(96, 144)
 
-[node name="RoomTemplate" type="Node2D"]
+[node name="RoomTemplate" type="Node2D" unique_id=1629164889 node_paths=PackedStringArray("player_spawn", "exit_area", "camera_anchor")]
+script = ExtResource("1_prhwa")
+player_spawn = NodePath("PlayerSpawn")
+exit_area = NodePath("Exit")
+camera_anchor = NodePath("CameraAnchor")
 
-[node name="PlayerSpawn" type="Marker2D" parent="."]
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1066878867]
 position = Vector2(160, 400)
 
-[node name="Exit" type="Marker2D" parent="."]
+[node name="Exit" type="Area2D" parent="." unique_id=1752539524]
 position = Vector2(1120, 400)
+collision_layer = 0
+monitorable = false
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" unique_id=124377886]
+shape = SubResource("RectangleShape2D_exit")
 
-[node name="Props" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="." unique_id=1320166299]
 
-[node name="MusicZones" type="Node2D" parent="."]
+[node name="Props" type="Node2D" parent="." unique_id=1283344746]
 
-[node name="MusicZone" parent="MusicZones" instance=ExtResource("1_zone")]
+[node name="MusicZones" type="Node2D" parent="." unique_id=1272599596]
+
+[node name="CameraAnchor" type="Marker2D" parent="." unique_id=2056955791]
 position = Vector2(640, 400)
 
-[node name="CameraAnchor" type="Marker2D" parent="."]
-position = Vector2(640, 400)
+[node name="CameraZones" type="Node2D" parent="." unique_id=1110707434]
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=2066561747]

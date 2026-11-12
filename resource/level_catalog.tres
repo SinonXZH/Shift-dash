@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LevelCatalog" format=3 uid="uid://bras5k771221b"]
+
+[ext_resource type="Script" uid="uid://d0gdonnnpu1mu" path="res://script/game_session/level_entry.gd" id="1_4sd5p"]
+[ext_resource type="Script" uid="uid://dcxwdct1gqu0a" path="res://script/game_session/level_catalog.gd" id="2_egcwh"]
+
+[sub_resource type="Resource" id="Resource_room_02"]
+script = ExtResource("1_4sd5p")
+title = "测试房间 01"
+scene_file = "uid://dosyo288i1jxg"
+
+[sub_resource type="Resource" id="Resource_870f0"]
+script = ExtResource("1_4sd5p")
+title = "测试房间 02"
+scene_file = "uid://bommoji44i1w5"
+metadata/_custom_type_script = "uid://d0gdonnnpu1mu"
+
+[resource]
+script = ExtResource("2_egcwh")
+levels = Array[ExtResource("1_4sd5p")]([SubResource("Resource_room_02"), SubResource("Resource_870f0")])
