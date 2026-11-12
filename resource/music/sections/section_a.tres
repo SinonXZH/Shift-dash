@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MusicSection" format=3]
+
+[ext_resource type="Script" path="res://script/music_director/music_section.gd" id="1_g7dbx"]
+[ext_resource type="AudioStream" path="res://resource/music/audio/section_a.wav" id="1_ky8rb"]
+
+[resource]
+script = ExtResource("1_g7dbx")
+audio_stream = ExtResource("1_ky8rb")
+playback_mode = 1
+dash_timing_mode = 1
+dash_interval_seconds = 1.0
+loop_end_seconds = 60.0
+metadata/_custom_type_script = "uid://48kqaebr3f0f"

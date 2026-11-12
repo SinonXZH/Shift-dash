@@ -1,10 +1,26 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://bj0s761q4cbob"]
 
+[ext_resource type="Script" uid="uid://tvojhe2g8hox" path="res://script/actors/player.gd" id="1_player"]
+[ext_resource type="Script" uid="uid://dtds3bxwm37gm" path="res://script/actors/dash_controller.gd" id="2_dash"]
+[ext_resource type="Texture2D" uid="uid://bluoj5ufmihm1" path="res://resource/art/player/player.svg" id="3_texture"]
+[ext_resource type="Script" uid="uid://due5xx355dkcf" path="res://script/actors/dash_ring.gd" id="4_dash_ring"]
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 13.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=257403865 node_paths=PackedStringArray("dash_controller")]
 motion_mode = 1
+script = ExtResource("1_player")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+dash_controller = NodePath("DashController")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=977475242]
 shape = SubResource("CircleShape2D_player")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1446120413]
+texture = ExtResource("3_texture")
+
+[node name="DashController" type="Node" parent="." unique_id=1255840292]
+script = ExtResource("2_dash")
+
+[node name="DashRing" type="Node2D" parent="." unique_id=1084259244]
+script = ExtResource("4_dash_ring")

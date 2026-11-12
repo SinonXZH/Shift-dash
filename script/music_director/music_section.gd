@@ -2,11 +2,22 @@ class_name MusicSection
 extends Resource
 
 enum PlaybackMode { PLAY_ONCE, LOOP }
+enum DashTimingMode { MANUAL, FIXED_INTERVAL }
 
 @export var audio_stream: AudioStream
 @export var playback_mode: PlaybackMode = PlaybackMode.PLAY_ONCE
+
+@export_group("Dash Timing")
+## Manual uses Dash Points. Fixed Interval generates points from Dash Start Seconds.
+@export var dash_timing_mode: DashTimingMode = DashTimingMode.MANUAL
 ## Seconds from the start of the audio. Points can be entered in any order.
 @export var dash_points: PackedFloat64Array
+## First dash point, measured from the start of the audio.
+@export_range(0.0, 60.0, 0.001, "or_greater", "suffix:s")
+var dash_start_seconds := 0.0
+## Time between dash points. Used only in Fixed Interval mode.
+@export_range(0.001, 60.0, 0.001, "or_greater", "suffix:s")
+var dash_interval_seconds := 0.5
 
 @export_group("Loop Range")
 @export_range(0.0, 60.0, 0.001, "or_greater", "suffix:s")
@@ -33,6 +44,16 @@ func loop_duration_seconds() -> float:
 func sorted_dash_points() -> PackedFloat64Array:
 	var points := PackedFloat64Array()
 	var end := playback_end_seconds()
+	if dash_timing_mode == DashTimingMode.FIXED_INTERVAL:
+		if dash_interval_seconds <= 0.0 or dash_start_seconds < 0.0:
+			push_error("MusicSection: dash interval must be positive and dash start must be nonnegative.")
+			return points
+		var point_count := ceili((end - dash_start_seconds) / dash_interval_seconds)
+		for index in range(point_count):
+			var point := dash_start_seconds + index * dash_interval_seconds
+			if point < end:
+				points.append(point)
+		return points
 	for point in dash_points:
 		if point >= 0.0 and point < end:
 			points.append(point)
