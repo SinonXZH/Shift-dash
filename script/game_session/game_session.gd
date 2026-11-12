@@ -1,16 +1,16 @@
 extends Node
 
-@onready var music_director: MusicDirector = get_node("MusicDirector")
-@onready var world: GameWorld = get_node("World")
+@export var music_director: MusicDirector
+@export var world: GameWorld
 @onready var player: Player = world.player
-@onready var hud: GameHUD = get_node("HUD")
+@export var hud: GameHUD
 
 
 func _ready() -> void:
 	player.dash_controller.music_director = music_director
 	world.dash_ring.music_director = music_director
 	if not world.load_selected_level():
-		get_tree().change_scene_to_file.call_deferred(AppData.level_select)
+		get_tree().change_scene_to_packed.call_deferred(AppData.level_select)
 		return
 
 	hud.world = world

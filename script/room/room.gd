@@ -8,9 +8,9 @@ enum CameraMode {
 
 signal camera_change_requested(mode: CameraMode)
 
-@onready var player_spawn: Marker2D = get_node("PlayerSpawn")
-@onready var exit_area: Area2D = get_node("Exit")
-@onready var camera_anchor: Marker2D = get_node("CameraAnchor")
+@export var player_spawn: Marker2D
+@export var exit_area: Area2D
+@export var camera_anchor: Marker2D
 
 var objective_done := false
 

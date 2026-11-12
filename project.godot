@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
 
-AppData="*res://script/game_session/app_data.gd"
+AppData="*res://scenes/app_data.tscn"
 
 [display]
 

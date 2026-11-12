@@ -3,12 +3,12 @@ extends Node2D
 
 signal level_completed
 
-@onready var game_camera: Camera2D = get_node("CameraDirector/Camera2D")
-@onready var music_director: MusicDirector = get_node("../MusicDirector")
+@export var game_camera: Camera2D
+@export var music_director: MusicDirector
 
-@onready var player: Player = get_node("Player")
-@onready var dash_ring: DashRing = get_node("Player/DashRing")
-@onready var rooms: Node2D = get_node("Rooms")
+@export var player: Player
+@export var dash_ring: DashRing
+@export var rooms: Node2D
 
 var level_id := ""
 var completed := false

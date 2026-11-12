@@ -3,13 +3,13 @@ extends Control
 
 signal closed
 
-@onready var volume_slider: HSlider = get_node("Center/Panel/Content/Volume")
-@onready var volume_value: Label = get_node("Center/Panel/Content/VolumeRow/VolumeValue")
-@onready var fullscreen_button: CheckButton = get_node("Center/Panel/Content/Fullscreen")
-@onready var status: Label = get_node("Center/Panel/Content/Status")
+@export var volume_slider: HSlider
+@export var volume_value: Label
+@export var fullscreen_button: CheckButton
+@export var status: Label
 
-@onready var apply_button: Button = get_node("Center/Panel/Content/Apply")
-@onready var back_button: Button = get_node("Center/Panel/Content/Back")
+@export var apply_button: Button
+@export var back_button: Button
 
 
 func _ready() -> void:

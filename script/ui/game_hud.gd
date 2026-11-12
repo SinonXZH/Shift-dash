@@ -5,20 +5,20 @@ signal pause_requested(paused: bool)
 
 var world: GameWorld
 
-@onready var level_complete: Control = get_node("LevelComplete")
-@onready var result_title: Label = get_node("LevelComplete/Content/Title")
-@onready var next_button: Button = get_node("LevelComplete/Content/NextLevel")
-@onready var ending_timer: Timer = get_node("LevelComplete/EndingTimer")
-@onready var return_button: Button = get_node("LevelComplete/Content/ReturnToLevels")
-@onready var result_status: Label = get_node("LevelComplete/Content/Status")
-@onready var pause_menu: Control = get_node("PauseMenu")
-@onready var resume_button: Button = get_node("PauseMenu/Center/Panel/Content/Resume")
-@onready var settings_button: Button = get_node("PauseMenu/Center/Panel/Content/Settings")
-@onready var pause_status: Label = get_node("PauseMenu/Center/Panel/Content/Status")
-@onready var settings_panel: SettingsPanel = get_node("SettingsPanel")
+@export var level_complete: Control
+@export var result_title: Label
+@export var next_button: Button
+@export var ending_timer: Timer
+@export var return_button: Button
+@export var result_status: Label
+@export var pause_menu: Control
+@export var resume_button: Button
+@export var settings_button: Button
+@export var pause_status: Label
+@export var settings_panel: SettingsPanel
 
-@onready var save_return_button: Button = get_node("PauseMenu/Center/Panel/Content/SaveAndReturn")
-@onready var save_quit_button: Button = get_node("PauseMenu/Center/Panel/Content/SaveAndQuit")
+@export var save_return_button: Button
+@export var save_quit_button: Button
 
 var _progress_saved := false
 var _next_level_id := ""
@@ -82,7 +82,7 @@ func save_and_leave(quit_game: bool) -> void:
 	var tree := get_tree()
 	if quit_game:
 		tree.quit()
-	elif tree.change_scene_to_file(AppData.main_menu) == OK:
+	elif tree.change_scene_to_packed(AppData.main_menu) == OK:
 		tree.paused = false
 	else:
 		pause_status.text = "已存档，但无法加载主菜单。"
@@ -115,7 +115,7 @@ func _go_to_next_level() -> void:
 		return
 	var tree := get_tree()
 	AppData.selected_level_id = _next_level_id
-	if tree.change_scene_to_file(AppData.game_scene) == OK:
+	if tree.change_scene_to_packed(AppData.game_scene) == OK:
 		tree.paused = false
 	else:
 		AppData.selected_level_id = ""
@@ -124,9 +124,9 @@ func _go_to_next_level() -> void:
 
 func _return_from_results() -> void:
 	if _progress_saved or _save_completion():
-		var target_scene: String = AppData.main_menu if _next_level_id.is_empty() else AppData.level_select
+		var target_scene: PackedScene = AppData.main_menu if _next_level_id.is_empty() else AppData.level_select
 		var tree := get_tree()
-		if tree.change_scene_to_file(target_scene) == OK:
+		if tree.change_scene_to_packed(target_scene) == OK:
 			tree.paused = false
 			return
 		result_status.text = "无法加载菜单。"

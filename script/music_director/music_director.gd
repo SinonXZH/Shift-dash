@@ -23,7 +23,7 @@ class PendingSection:
 	var loop_notes: Array[DashNote] = []
 
 
-@onready var audio_player: AudioStreamPlayer = get_node("PrimaryMusic")
+@export var audio_player: AudioStreamPlayer
 
 var _current_section: MusicSection
 var _dash_notes: Array[DashNote] = []

@@ -1,8 +1,8 @@
 extends Control
 
-@onready var levels: VBoxContainer = get_node("Center/Panel/Content/Scroll/Levels")
-@onready var back_button: Button = get_node("Center/Panel/Content/Back")
-@onready var status: Label = get_node("Center/Panel/Content/Status")
+@export var levels: VBoxContainer
+@export var back_button: Button
+@export var status: Label
 
 
 func _ready() -> void:
@@ -31,11 +31,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _enter_level(level_id: String) -> void:
 	AppData.selected_level_id = level_id
-	if get_tree().change_scene_to_file(AppData.game_scene) != OK:
+	if get_tree().change_scene_to_packed(AppData.game_scene) != OK:
 		AppData.selected_level_id = ""
 		status.text = "无法加载关卡。"
 
 
 func _back_to_menu() -> void:
-	if get_tree().change_scene_to_file(AppData.main_menu) != OK:
+	if get_tree().change_scene_to_packed(AppData.main_menu) != OK:
 		status.text = "无法返回主菜单。"

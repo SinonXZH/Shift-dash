@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://1t6tlk73g6dm" path="res://script/music_director/music_director.gd" id="1_director"]
 
-[node name="MusicDirector" type="Node" unique_id=942881198]
+[node name="MusicDirector" type="Node" unique_id=942881198 node_paths=PackedStringArray("audio_player")]
 script = ExtResource("1_director")
+
+audio_player = NodePath("PrimaryMusic")
 
 [node name="PrimaryMusic" type="AudioStreamPlayer" parent="." unique_id=891281327]

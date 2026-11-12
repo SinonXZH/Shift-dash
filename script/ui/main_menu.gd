@@ -1,13 +1,13 @@
 extends Control
 
-@onready var menu: Control = get_node("Center/Menu")
-@onready var continue_button: Button = get_node("Center/Menu/Continue")
-@onready var new_game_button: Button = get_node("Center/Menu/NewGame")
-@onready var status: Label = get_node("Center/Menu/Status")
+@export var menu: Control
+@export var continue_button: Button
+@export var new_game_button: Button
+@export var status: Label
 
-@onready var settings_button: Button = get_node("Center/Menu/SettingsButton")
-@onready var quit_button: Button = get_node("Center/Menu/Quit")
-@onready var settings_panel: SettingsPanel = get_node("SettingsPanel")
+@export var settings_button: Button
+@export var quit_button: Button
+@export var settings_panel: SettingsPanel
 
 
 func _ready() -> void:
@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func _open_level_select() -> void:
-	if get_tree().change_scene_to_file(AppData.level_select) != OK:
+	if get_tree().change_scene_to_packed(AppData.level_select) != OK:
 		status.text = "无法打开关卡选择。"
 
 

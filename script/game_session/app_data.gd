@@ -1,9 +1,9 @@
 extends Node
 
-const level_catalog = preload("res://resource/level_catalog.tres")
-const game_scene = "res://scenes/game_session.tscn"
-const main_menu = "res://scenes/ui/main_menu.tscn"
-const level_select = "res://scenes/ui/level_select.tscn"
+@export var level_catalog: LevelCatalog
+@export var game_scene: PackedScene
+@export var main_menu: PackedScene
+@export var level_select: PackedScene
 
 const SAVE_PATH := "user://progress.cfg"
 const SETTINGS_PATH := "user://settings.cfg"
