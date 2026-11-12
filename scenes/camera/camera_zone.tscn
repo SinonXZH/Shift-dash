@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bus2h18h533n8"]
+
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="1_dpclu"]
+[ext_resource type="Script" uid="uid://bhja7s54x7fyo" path="res://script/camera/camera_zone.gd" id="1_w7mv5"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_w7mv5"]
+
+[sub_resource type="Resource" id="Resource_34xv8"]
+script = ExtResource("2_w7mv5")
+
+[node name="CameraZone" type="Area2D" unique_id=801989756 node_paths=PackedStringArray("phantom_camera")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_w7mv5")
+phantom_camera = NodePath("PhantomCamera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=335546273]
+
+[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=1235293021]
+unique_name_in_owner = true
+script = ExtResource("1_dpclu")
+tween_resource = SubResource("Resource_34xv8")
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

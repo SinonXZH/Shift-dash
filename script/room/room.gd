@@ -15,6 +15,26 @@ signal camera_change_requested(mode: CameraMode)
 var objective_done := false
 
 
+func configure_cameras(player: Player) -> void:
+	for zone in _get_camera_zones():
+		zone.configure(player)
+
+
+func reset_camera_zones() -> void:
+	for zone in _get_camera_zones():
+		zone.reset_trigger()
+
+
+func _get_camera_zones() -> Array[CameraZone]:
+	var result: Array[CameraZone] = []
+	var zones := get_node_or_null("CameraZones")
+	if zones != null:
+		for node in zones.find_children("*", "Area2D", true, false):
+			if node is CameraZone:
+				result.append(node as CameraZone)
+	return result
+
+
 func configure_music(player: Player, director: MusicDirector) -> void:
 	for zone in _get_music_zones():
 		zone.player = player
